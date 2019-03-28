@@ -1,0 +1,102 @@
+% include('btop.html')
+
+<style>
+
+.ul {text-align: left;
+    vertical-align: top; }
+
+.b {font-weight: bold; }
+
+.tabla {
+     margin: 2mm;
+     cell-padding: 2mm;
+    }
+
+.oddline {
+    background-color: #ffffff;
+}
+.evenline {
+    background-color: #f0f0f0;
+}
+
+</style>
+
+<hr>
+
+% old = ''
+% eo = 'oddline'
+% day_now, mon_now, day_tmrw, mon_tmrw = datestr
+
+<table frame=hsides rules=rows class=tabla>
+
+% was_today = 0
+% was_tmrw = 0
+% was_month = 0
+% old_mon = ''
+% printed_mon = ''
+
+% for d in data:
+
+% done_today = 0
+% done_tmrw  = 0
+
+% if old != d['date']:
+%   if eo == "oddline":
+%      eo = 'evenline'
+%   else:
+%      eo = 'oddline'
+%   end
+
+%   if d['date'] == day_now and was_today == 0:
+      <tr class="{{ eo }}">
+      <td class='ul b' colspan=9 >
+      Сегодня
+      </td>
+      </tr>
+%     was_today = 1
+%     done_today = 1
+%   end
+
+%   if d['date'] == day_tmrw and was_tmrw == 0:
+      <tr class="{{ eo }}" >
+      <td class='ul b' colspan=9 >
+      Завтра
+      </td>
+      </tr>
+%     was_tmrw = 1
+%     done_tmrw = 1
+%   end
+
+%   new_mon = d['date'][3:]
+
+%   if new_mon != printed_mon and new_mon != old_mon and done_today == 0 and done_tmrw == 0:
+      <tr class="{{ eo }}">
+      <td class='ul b' colspan=9 >
+      {{ months[ int(new_mon[:2]) -1] }}
+      </td>
+      </tr>
+%     was_month = 1
+%     old_mon = new_mon
+%     printed_mon = new_mon
+%   end
+
+% end
+% old = d['date']
+
+    <tr class='{{ eo }}'>
+        <td class='ul'>{{ d['wd'] }}</td>
+        <td class='ul b'>{{ d['date'] }}</td>
+        <td class='ul'>{{ d['time'] }}</td>
+        <td class='ul'>{{ d['city'] }}</td>
+        <td class='ul'>{{ d['place'] }}</td>
+        <td class='ul b'>{{ d['what'] }}</td>
+        <td class='ul'>{{!d['desc'] }}</td>
+        <td class='ul'>{{!d['source'] }}</td>
+    </tr>
+% end
+
+</table>
+
+<hr>
+
+% include('bbottom.html')
