@@ -25,8 +25,8 @@ __utc__          = 'UTC+0300'
 
 DATABASE    = 'ap.db'
 
-admname = 'miko'
-admpass = 'ryto'
+admname = 'foo'
+admpass = 'bar'
 
 minusday = dt.timedelta(days=-10)
 dtoday = dt.date.today()
@@ -95,7 +95,7 @@ def login():
     """ try to login """
     return template ("login.html", dt=dt.datetime.now(), ver=__version__, datestr=dates(), months=months)
 
-@post('/ed')
+@post('/chg')
 def enter():
     """ check enter """
     aname = request.forms.get('name')
